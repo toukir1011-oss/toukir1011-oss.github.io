@@ -3,385 +3,579 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Toukir Rahman, electrical engineer: Unilever experience, battery research, publications and projects.">
 <title>Toukir Rahman</title>
+<meta name="description" content="Toukir Rahman, electrical engineer from Bangladesh: battery degradation research, packaging and production engineering at Unilever.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: a one-page personal site in alternating ink and paper bands, oversized condensed caps, one orange accent, orange parentheses as the signature device. Deliberately single-theme. */
+/* Layout: a lab-notebook page for an electrical engineer. Deep violet "scope screen" bands carry the hero waveform and the battery data; pale cyan paper bands carry the work. One signature: a live DC + ripple trace. Committed single look. */
 :root {
-  --ink: #121211;
-  --paper: #FAF7F4;
-  --card: #ECEAE7;
-  --bone: #F5F1EC;
-  --mute-dark: #A8A39C;
-  --mute-light: #5C5853;
-  --orange: #E8500A;
-  --orange-on-dark: #F26A1F;
-  --orange-text: #C2410C;
-  --display: 'Inter Tight', 'Arial Narrow', Arial, sans-serif;
-  --body: 'Inter', Arial, sans-serif;
+  --violet: #231651;
+  --violet-2: #2E2068;
+  --violet-line: #3E3180;
+  --cyan: #D6FFF6;
+  --paper: #F3FBF9;
+  --paper-2: #E4F6F2;
+  --teal: #4DCCBD;
+  --blue: #2374AB;
+  --coral: #FF8484;
+  --ink: #231651;
+  --ink-soft: #4F4775;
+  --on-violet-soft: #B9B2DA;
+  --sans: 'Plus Jakarta Sans', 'Segoe UI', Arial, sans-serif;
+  --mono: 'JetBrains Mono', Consolas, 'Courier New', monospace;
+  --r: 18px;
   color-scheme: light;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
-body { margin: 0; background: var(--ink); color: var(--bone); font-family: var(--body); font-size: 17px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--ink); }
-h1, h2, h3, p { margin: 0; }
+html { scroll-behavior: smooth; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before { transition: none !important; animation: none !important; } }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--violet); }
+h1, h2, h3, p, figure, ul, ol { margin: 0; }
+img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
-a:focus-visible, button:focus-visible { outline: 3px solid var(--orange-on-dark); outline-offset: 3px; }
-img { display: block; max-width: 100%; }
+:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
 
-.wrap { max-width: 1280px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-@media (min-width: 720px) { .wrap { padding-left: max(40px, env(safe-area-inset-left, 0px)); padding-right: max(40px, env(safe-area-inset-right, 0px)); } }
-section { padding-block: clamp(64px, 10vw, 128px); scroll-margin-top: 64px; }
-.dark { background: var(--ink); color: var(--bone); }
-.light { background: var(--paper); color: var(--ink); }
-.orange { background: var(--orange); color: var(--ink); }
+.wrap { max-width: 1200px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 760px) { .wrap { padding-left: max(40px, env(safe-area-inset-left, 0px)); padding-right: max(40px, env(safe-area-inset-right, 0px)); } }
+.band { padding-block: clamp(64px, 9vw, 120px); }
+.band.violet { background: var(--violet); color: var(--cyan); }
+.band.tint { background: var(--paper-2); }
+section[id] { scroll-margin-top: 72px; }
 
-.paren { color: var(--orange-on-dark); }
-.light .paren { color: var(--orange); }
-.orange .paren { color: var(--ink); }
-.eyebrow { font-size: 14px; letter-spacing: .04em; color: var(--orange-on-dark); }
-.light .eyebrow { color: var(--orange-text); }
-.orange .eyebrow { color: var(--ink); }
-.display { font-family: var(--display); font-weight: 600; text-transform: uppercase; letter-spacing: -0.035em; line-height: 1; text-wrap: balance; }
-.h2 { font-size: clamp(40px, 6.4vw, 88px); }
-.accent { color: var(--orange-on-dark); }
-.light .accent { color: var(--orange); }
-.mute { color: var(--mute-dark); }
-.light .mute { color: var(--mute-light); }
+.label { font-family: var(--mono); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--blue); }
+.violet .label { color: var(--teal); }
+h2.title { font-size: clamp(34px, 5vw, 60px); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; text-wrap: balance; margin-top: 14px; max-width: 18ch; }
+.lead { font-size: clamp(18px, 1.8vw, 21px); line-height: 1.6; color: var(--ink-soft); max-width: 62ch; margin-top: 20px; }
+.violet .lead { color: var(--on-violet-soft); }
+.hl-coral { color: var(--coral); }
+.hl-teal { color: var(--teal); }
 
 /* nav */
-.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--ink); color: var(--bone); border-bottom: 1px solid #2A2927; }
-.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 16px; }
-.nav b { font-weight: 600; font-size: 15px; white-space: nowrap; }
-.nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0; padding: 0; font-size: 15px; }
-.nav ul a { text-decoration: none; color: var(--mute-dark); transition: color .15s; }
-.nav ul a:hover { color: var(--bone); }
-.nav ul a::before { content: "( "; } .nav ul a::after { content: " )"; }
-.nav ul a:hover::before, .nav ul a:hover::after { color: var(--orange-on-dark); }
-.nav .loc { font-size: 15px; color: var(--mute-dark); }
-@media (max-width: 860px) { .nav .loc { display: none; } }
-@media (max-width: 560px) { .nav .wrap { flex-direction: column; align-items: flex-start; gap: 8px; padding-block: 12px; } .nav ul { gap: 4px 14px; font-size: 14px; } }
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--violet); color: var(--cyan); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+.mark { display: flex; align-items: center; gap: 10px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.mark i { width: 30px; height: 18px; border: 2px solid var(--teal); border-radius: 4px; position: relative; display: inline-block; }
+.mark i::before { content: ""; position: absolute; right: -6px; top: 4px; width: 3px; height: 6px; background: var(--teal); border-radius: 1px; }
+.mark i::after { content: ""; position: absolute; left: 3px; top: 3px; bottom: 3px; width: 62%; background: var(--teal); border-radius: 1px; }
+.nav ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 26px; font-size: 15px; font-weight: 500; }
+.nav ul a { text-decoration: none; color: var(--on-violet-soft); transition: color .15s; }
+.nav ul a:hover { color: var(--cyan); }
+@media (max-width: 600px) { .nav .wrap { flex-direction: column; align-items: flex-start; gap: 6px; padding-block: 10px; } .nav ul { gap: 2px 18px; font-size: 14px; } }
 
 /* hero */
-.hero { padding-block: clamp(48px, 7vw, 96px) clamp(64px, 8vw, 112px); }
-.hero .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: clamp(32px, 5vw, 80px); align-items: center; }
-.hero h1 { font-size: clamp(64px, 11.5vw, 168px); line-height: .92; letter-spacing: -0.04em; }
-.hero .tags { display: flex; flex-wrap: wrap; gap: 8px 32px; margin-top: 32px; font-size: 15px; }
-.hero .lede { font-size: clamp(22px, 2.6vw, 34px); line-height: 1.3; max-width: 22ch; margin-top: 32px; }
-.hero figure { margin: 0; }
-.hero figure img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
-.hero figcaption { font-size: 14px; margin-top: 10px; }
-@media (max-width: 800px) { .hero .grid { grid-template-columns: 1fr; } .hero figure { max-width: 420px; } }
+.hero { padding-block: clamp(48px, 7vw, 96px) 0; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: clamp(32px, 5vw, 72px); align-items: end; }
+.hero h1 { font-size: clamp(56px, 9.6vw, 132px); font-weight: 800; line-height: .92; letter-spacing: -0.045em; }
+.hero h1 span { color: var(--teal); }
+.hero .intro { font-size: clamp(19px, 2vw, 24px); line-height: 1.5; color: var(--on-violet-soft); max-width: 34ch; margin-top: 28px; }
+.hero .intro b { color: var(--cyan); font-weight: 600; }
+.hero figure { position: relative; }
+.hero figure img { width: 100%; aspect-ratio: 5 / 6; object-fit: cover; border-radius: var(--r) var(--r) 0 0; }
+.hero figcaption { position: absolute; left: 14px; bottom: 14px; background: rgba(35, 22, 81, .82); color: var(--cyan); font-size: 13px; padding: 6px 12px; border-radius: 999px; }
+@media (max-width: 820px) { .hero-grid { grid-template-columns: 1fr; } .hero figure { max-width: 440px; } .hero figure img { border-radius: var(--r); } }
+
+.scope { position: relative; margin-top: clamp(40px, 5vw, 64px); border-top: 1px solid var(--violet-line); }
+.scope canvas { display: block; width: 100%; height: 150px; }
+.scope .legend { position: absolute; top: 14px; left: 0; right: 0; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 20px; font-family: var(--mono); font-size: 12px; color: var(--on-violet-soft); pointer-events: none; }
+.scope .legend b { font-weight: 500; }
+.k-dc { color: var(--cyan); } .k-rip { color: var(--teal); }
+
+.facts { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--violet-line); }
+.facts div { padding: 22px 20px 26px 0; }
+.facts b { display: block; font-size: clamp(28px, 3.2vw, 40px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: var(--cyan); font-variant-numeric: tabular-nums; }
+.facts span { font-size: 14px; color: var(--on-violet-soft); }
+@media (max-width: 900px) { .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* about */
-.about { padding-top: 0; }
-.statement { font-family: var(--display); font-size: clamp(26px, 3.6vw, 48px); line-height: 1.2; letter-spacing: -0.015em; max-width: 30ch; margin-left: auto; text-align: right; text-wrap: balance; }
-.statement + p { font-size: clamp(18px, 2vw, 24px); line-height: 1.45; max-width: 46ch; margin: 24px 0 0 auto; text-align: right; }
-.about .row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 12px; margin-top: clamp(40px, 6vw, 72px); }
-.about .row img { width: 100%; height: 100%; min-height: 260px; object-fit: cover; object-position: 50% 40%; }
-.about .cards { display: grid; gap: 12px; }
-@media (max-width: 760px) { .about .row { grid-template-columns: 1fr; } .statement, .statement + p { text-align: left; margin-left: 0; } }
-
-.tile { padding: 24px 26px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
-.tile h3 { font-size: 21px; font-weight: 600; line-height: 1.25; }
-.tile p { font-size: 15px; line-height: 1.45; }
-.tile .k { font-size: 13px; letter-spacing: .03em; }
-.t-card { background: var(--card); color: var(--ink); }
-.t-card .k { color: var(--orange-text); }
-.t-card p:not(.k) { color: var(--mute-light); }
-.t-orange { background: var(--orange); color: var(--ink); }
-.t-ink { background: var(--ink); color: var(--bone); }
-.t-ink .k { color: var(--orange-on-dark); }
-.t-ink p:not(.k) { color: var(--mute-dark); }
-.tile .spacer { flex: 1; }
-
-/* numbers */
-.numbers h2 { text-align: center; color: var(--orange); }
-.numbers h2 .paren { color: var(--ink); }
-.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 56px; border-top: 2px solid var(--ink); padding-top: 40px; margin-top: 48px; }
-.stat b { display: block; font-family: var(--display); font-weight: 600; font-size: clamp(64px, 8vw, 112px); line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
-.stat .k { display: block; font-size: 14px; color: var(--orange-text); margin-top: 8px; }
-.stat p { font-size: 16px; color: var(--mute-light); margin-top: 6px; max-width: 30ch; }
-@media (max-width: 860px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 480px) { .stats { grid-template-columns: 1fr; } }
+.about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.about-grid p + p { margin-top: 18px; }
+.about-grid .copy p { font-size: 18px; color: var(--ink-soft); max-width: 58ch; }
+.about-grid .copy p.big { font-size: clamp(22px, 2.4vw, 28px); line-height: 1.4; color: var(--ink); font-weight: 600; letter-spacing: -0.01em; }
+.about-grid figure img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 45%; border-radius: var(--r); }
+.cap { font-size: 14px; color: var(--ink-soft); margin-top: 10px; }
+.violet .cap { color: var(--on-violet-soft); }
+@media (max-width: 820px) { .about-grid { grid-template-columns: 1fr; } }
 
 /* work */
-.work-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 32px; }
-.work-head h2 { flex: 1 1 420px; min-width: 0; }
-.shots { display: flex; align-items: center; gap: 10px; }
-.shots .big { font-family: var(--display); font-weight: 300; font-size: clamp(90px, 12vw, 180px); line-height: 1; color: var(--orange-on-dark); }
-.shots figure { margin: 0; }
-.shots img { height: clamp(130px, 16vw, 210px); width: auto; object-fit: cover; }
-.shots .a img { aspect-ratio: 4 / 3; } .shots .b img { aspect-ratio: 1; }
-.shots figcaption { font-size: 13px; color: var(--mute-dark); margin-top: 6px; }
-@media (max-width: 520px) { .shots .big { display: none; } .shots { flex-wrap: wrap; } .shots img { height: 150px; } }
-.timeline { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; margin-top: clamp(48px, 6vw, 80px); }
-.step { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
-.step .when { font-size: 14px; color: var(--orange-on-dark); }
-.step .bar { height: 5px; background: var(--bone); }
-.step:last-child .bar { background: var(--orange); }
-.step h3 { font-size: clamp(22px, 2.3vw, 30px); font-weight: 600; line-height: 1.15; }
-.step p { font-size: 16px; color: var(--mute-dark); }
-.org { font-size: 14px; color: var(--mute-dark); margin-top: 48px; }
-@media (max-width: 760px) { .timeline { grid-template-columns: 1fr; } }
+.work-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px 40px; }
+.org { font-size: 15px; color: var(--ink-soft); }
+.org b { color: var(--ink); }
+.stages { list-style: none; padding: 0; margin-top: clamp(40px, 5vw, 64px); display: grid; gap: clamp(48px, 6vw, 80px); }
+.stage { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px 48px; padding-top: 28px; border-top: 2px solid var(--ink); }
+.stage .when { font-family: var(--mono); font-size: 14px; color: var(--blue); }
+.stage .step { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: var(--violet); color: var(--cyan); font-weight: 700; font-size: 15px; margin-bottom: 14px; }
+.stage h3 { font-size: clamp(24px, 2.6vw, 32px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; }
+.stage .body > p { color: var(--ink-soft); max-width: 62ch; margin-top: 12px; }
+.points { list-style: none; padding: 0; margin-top: 20px; display: grid; gap: 10px; max-width: 64ch; }
+.points li { position: relative; padding-left: 26px; color: var(--ink-soft); }
+.points li::before { content: ""; position: absolute; left: 0; top: .62em; width: 12px; height: 6px; border: 2px solid var(--blue); border-radius: 2px; }
+.points li b { color: var(--ink); font-weight: 600; }
+.shots { display: grid; gap: 14px; margin-top: 28px; }
+.shots.two { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); }
+.shots img { width: 100%; height: 100%; max-height: 420px; object-fit: cover; border-radius: 14px; }
+.shots figure { display: flex; flex-direction: column; min-width: 0; }
+.shots figure img { flex: 1; }
+@media (max-width: 760px) { .stage { grid-template-columns: 1fr; } .shots.two { grid-template-columns: 1fr; } }
 
-/* thesis */
-.thesis h2 { max-width: 20ch; margin-top: 16px; }
-.thesis .setup { font-size: clamp(18px, 1.9vw, 22px); max-width: 60ch; margin-top: 24px; }
-.trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 48px; }
-.trio .tile { min-height: 260px; }
-.trio h3 { font-size: 26px; }
-.footnote { font-size: 14px; margin-top: 24px; }
-@media (max-width: 760px) { .trio { grid-template-columns: 1fr; } .trio .tile { min-height: 0; } }
+/* urefill feature */
+.feature { margin-top: 32px; background: var(--violet); color: var(--cyan); border-radius: var(--r); padding: clamp(24px, 4vw, 44px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 48px); }
+.feature .bn { font-size: clamp(24px, 3vw, 36px); font-weight: 700; line-height: 1.3; color: var(--teal); }
+.feature .tr { font-size: 15px; color: var(--on-violet-soft); margin-top: 6px; font-style: italic; }
+.feature h4 { margin: 24px 0 0; font-size: 22px; font-weight: 700; color: var(--cyan); }
+.feature p.d { color: var(--on-violet-soft); margin-top: 10px; max-width: 52ch; }
+.feature .pair { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 0.832fr) minmax(0, 1.813fr); gap: 12px; align-items: start; }
+.feature .pair figure { min-width: 0; }
+.feature .pair img { width: 100%; height: auto; object-fit: cover; border-radius: 12px; }
+.feature .pair .mt img { aspect-ratio: 507 / 609; }
+.feature .pair .gt img { aspect-ratio: 1039 / 573; }
+.feature .pair .cap { color: var(--on-violet-soft); font-size: 13px; }
+.tag { display: inline-block; font-family: var(--mono); font-size: 12px; padding: 4px 10px; border-radius: 999px; background: var(--teal); color: var(--violet); margin-top: 18px; }
+@media (max-width: 860px) { .feature { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .feature .pair { grid-template-columns: 1fr; } }
+
+/* research */
+.q { font-size: clamp(34px, 5.2vw, 64px); font-weight: 800; line-height: 1.05; letter-spacing: -0.035em; max-width: 17ch; margin-top: 14px; text-wrap: balance; }
+.why { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 56px); margin-top: 28px; align-items: start; }
+.why p { color: var(--on-violet-soft); font-size: 18px; max-width: 56ch; }
+.why p + p { margin-top: 14px; }
+.why p b { color: var(--cyan); font-weight: 600; }
+.spec { font-family: var(--mono); font-size: 14px; display: grid; grid-template-columns: auto minmax(0, 1fr); border-top: 1px solid var(--violet-line); }
+.spec dt, .spec dd { margin: 0; padding: 10px 0; border-bottom: 1px solid var(--violet-line); }
+.spec dt { color: var(--on-violet-soft); padding-right: 24px; }
+.spec dd { color: var(--cyan); }
+@media (max-width: 820px) { .why { grid-template-columns: 1fr; } }
+
+.rig { display: grid; grid-template-columns: minmax(0, .8fr) repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: clamp(40px, 5vw, 64px); }
+.rig figure { min-width: 0; }
+.rig img { width: 100%; height: auto; aspect-ratio: 4 / 3.3; object-fit: cover; border-radius: 12px; background: #fff; }
+.rig .cap { font-size: 13px; }
+.rig .cap b { color: var(--cyan); font-weight: 600; }
+@media (max-width: 900px) { .rig { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.results { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; margin-top: 56px; }
+.chart { background: var(--violet-2); border-radius: var(--r); padding: 24px 22px 18px; min-width: 0; }
+.chart h3 { font-size: 19px; font-weight: 700; color: var(--cyan); }
+.chart .sub { font-size: 14px; color: var(--on-violet-soft); margin-top: 4px; }
+.chart .big { display: flex; flex-wrap: wrap; gap: 4px 18px; align-items: baseline; margin-top: 16px; }
+.chart .big b { font-size: clamp(40px, 4.4vw, 56px); font-weight: 800; letter-spacing: -0.03em; color: var(--coral); line-height: 1; font-variant-numeric: tabular-nums; }
+.chart .big span { font-size: 15px; color: var(--on-violet-soft); max-width: 30ch; }
+.chart svg { display: block; width: 100%; height: auto; margin-top: 18px; overflow: visible; }
+.chart .grid { stroke: var(--violet-line); stroke-width: 1; }
+.chart .tick, .chart .axis, .chart .endv { font-family: var(--mono); font-size: 13px; fill: var(--on-violet-soft); }
+.chart .end { font-family: var(--sans); font-size: 15px; font-weight: 700; }
+.chart .line { fill: none; stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+.chart .dot { stroke: var(--violet-2); stroke-width: 2; }
+.chart .line.s-dc { stroke: var(--cyan); } .chart .dot.s-dc, .chart .end.s-dc { fill: var(--cyan); }
+.chart .line.s-1k { stroke: var(--teal); } .chart .dot.s-1k, .chart .end.s-1k { fill: var(--teal); }
+.chart .line.s-100 { stroke: var(--coral); stroke-width: 3.5; } .chart .dot.s-100, .chart .end.s-100 { fill: var(--coral); }
+.source { font-size: 14px; color: var(--on-violet-soft); margin-top: 18px; max-width: 80ch; }
+.source a { color: var(--teal); }
+@media (max-width: 900px) { .results { grid-template-columns: 1fr; } }
 
 /* publications */
-.pubs-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 12px 32px; }
-.pubs-head p { font-family: var(--display); font-weight: 600; text-transform: uppercase; font-size: clamp(20px, 2.6vw, 34px); color: #7A756E; }
-.pubs { margin-top: 40px; }
-.pub { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 24px; padding: 32px 24px; border-top: 2px solid var(--ink); }
-.pub:nth-child(2) { background: var(--ink); color: var(--bone); border-top: none; }
-.pub .n { font-size: 14px; color: var(--orange-text); }
-.pub:nth-child(2) .n { color: var(--orange-on-dark); }
-.pub h3 { font-size: clamp(19px, 2vw, 24px); font-weight: 600; line-height: 1.3; }
-.pub .meta { font-size: 15px; margin-top: 10px; color: var(--mute-light); overflow-wrap: anywhere; }
-.pub:nth-child(2) .meta { color: var(--mute-dark); }
-.pub .meta b { color: inherit; font-weight: 600; }
-.pub .c { text-align: right; }
-.pub .c b { display: block; font-family: var(--display); font-weight: 600; font-size: 64px; line-height: 1; color: var(--orange); }
-.pub:nth-child(2) .c b { color: var(--orange-on-dark); }
-.pub .c span { font-size: 14px; }
-@media (max-width: 640px) { .pub { grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 24px 16px; } .pub .c { text-align: left; display: flex; align-items: baseline; gap: 8px; } .pub .c b { display: inline; font-size: 40px; } }
+.pubs { margin-top: 40px; display: grid; gap: 14px; }
+.pub { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px 32px; padding: 26px 28px; border-radius: var(--r); background: #fff; border: 1px solid #CDEBE4; }
+.pub .venue { font-family: var(--mono); font-size: 13px; color: var(--blue); }
+.pub h3 { font-size: clamp(19px, 2vw, 23px); font-weight: 700; line-height: 1.3; margin-top: 8px; letter-spacing: -0.01em; }
+.pub .authors { font-size: 15px; color: var(--ink-soft); margin-top: 8px; }
+.pub .authors b { color: var(--ink); }
+.pub a.doi { display: inline-block; font-family: var(--mono); font-size: 13px; margin-top: 10px; color: var(--blue); overflow-wrap: anywhere; }
+.pub .cites { text-align: right; }
+.pub .cites b { display: block; font-size: 44px; font-weight: 800; line-height: 1; color: var(--violet); }
+.pub .cites span { font-size: 13px; color: var(--ink-soft); }
+@media (max-width: 600px) { .pub { grid-template-columns: 1fr; padding: 22px 20px; } .pub .cites { text-align: left; display: flex; gap: 8px; align-items: baseline; } .pub .cites b { font-size: 32px; } }
 
 /* projects */
-.projects h2 { font-size: clamp(30px, 4.4vw, 60px); text-transform: none; letter-spacing: -0.03em; line-height: 1.08; text-align: center; max-width: 24ch; margin: 0 auto; }
-.four { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 56px; }
-.four .tile { min-height: 320px; transition: transform .2s ease; }
-.four .tile:hover { transform: translateY(-4px); }
-.four .top { display: flex; justify-content: space-between; font-size: 13px; }
-.four h3 { font-size: 23px; }
-@media (max-width: 980px) { .four { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 520px) { .four { grid-template-columns: 1fr; } .four .tile { min-height: 0; } }
+.projects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 40px; }
+.proj { background: #fff; border: 1px solid #CDEBE4; border-radius: var(--r); padding: 26px; display: flex; flex-direction: column; gap: 12px; transition: transform .2s ease, border-color .2s; min-width: 0; }
+.proj:hover { transform: translateY(-3px); border-color: var(--teal); }
+.proj .yr { font-family: var(--mono); font-size: 13px; color: var(--blue); }
+.proj h3 { font-size: 21px; font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; }
+.proj p { color: var(--ink-soft); font-size: 16px; }
+.proj .kit { margin-top: auto; padding-top: 8px; font-family: var(--mono); font-size: 12px; color: var(--ink-soft); }
+@media (max-width: 900px) { .projects { grid-template-columns: 1fr; } }
 
-/* direction */
-.direction .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 380px); gap: 48px; align-items: stretch; }
-.interests { list-style: none; padding: 0; margin: 20px 0 0; }
-.interests li { font-family: var(--display); font-weight: 600; text-transform: uppercase; font-size: clamp(32px, 5.4vw, 76px); letter-spacing: -0.035em; line-height: 1.04; }
-.direction .next { font-size: clamp(18px, 1.9vw, 22px); max-width: 44ch; margin-top: 32px; }
+/* beyond */
+.beyond { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 64px); margin-top: 40px; }
+.beyond h3 { font-size: 22px; font-weight: 700; }
+.events { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 18px; }
+.events div { background: var(--violet); color: var(--cyan); border-radius: 14px; padding: 20px; }
+.events b { display: block; font-size: 34px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: var(--teal); }
+.events p { font-size: 15px; color: var(--on-violet-soft); margin-top: 6px; }
+.events-note { font-size: 15px; color: var(--ink-soft); margin-top: 14px; }
+.list { list-style: none; padding: 0; margin-top: 18px; border-top: 1px solid #BFE3DB; }
+.list li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 14px 0; border-bottom: 1px solid #BFE3DB; }
+.list li b { font-weight: 600; }
+.list li span { color: var(--ink-soft); font-size: 15px; }
+.list li time { font-family: var(--mono); font-size: 13px; color: var(--blue); white-space: nowrap; }
+.list li span { grid-column: 1 / -1; }
+.skills { margin-top: 32px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.chips span { font-size: 14px; padding: 6px 12px; border-radius: 999px; background: #fff; border: 1px solid #BFE3DB; }
+@media (max-width: 820px) { .beyond { grid-template-columns: 1fr; } }
+@media (max-width: 420px) { .events { grid-template-columns: 1fr; } }
+
+/* next */
+.next-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); gap: clamp(32px, 5vw, 64px); align-items: start; }
+.interests { list-style: none; padding: 0; margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; }
+.interests li { font-size: clamp(17px, 1.8vw, 20px); font-weight: 600; padding: 10px 18px; border-radius: 999px; border: 1.5px solid var(--teal); color: var(--cyan); }
+.interests li:first-child { background: var(--teal); color: var(--violet); }
 .scores { display: grid; gap: 12px; }
-.score { background: var(--ink); color: var(--bone); padding: 28px; display: flex; flex-direction: column; gap: 8px; }
-.score .k { font-size: 13px; color: var(--orange-on-dark); }
-.score b { font-family: var(--display); font-weight: 600; font-size: clamp(72px, 9vw, 120px); line-height: 1; letter-spacing: -0.04em; margin-top: auto; }
-.score p { font-size: 15px; color: var(--mute-dark); }
-@media (max-width: 820px) { .direction .grid { grid-template-columns: 1fr; } .scores { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 460px) { .scores { grid-template-columns: 1fr; } }
+.score { background: var(--violet-2); border-radius: var(--r); padding: 22px 24px; }
+.score .k { font-family: var(--mono); font-size: 12px; color: var(--teal); text-transform: uppercase; letter-spacing: .06em; }
+.score b { display: block; font-size: 56px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; margin-top: 6px; }
+.score p { font-size: 14px; color: var(--on-violet-soft); }
+@media (max-width: 820px) { .next-grid { grid-template-columns: 1fr; } .scores { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 440px) { .scores { grid-template-columns: 1fr; } }
 
 /* contact */
-.contact { text-align: center; }
-.contact h2 { font-size: clamp(56px, 11vw, 150px); }
-.contact .sub { font-size: clamp(18px, 2.2vw, 26px); margin-top: 24px; }
-.mail { display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px; margin-top: 36px; }
-.mail .pill { background: var(--orange); color: var(--ink); font-weight: 600; font-size: clamp(18px, 2.4vw, 28px); padding: 16px 32px; border-radius: 999px; user-select: all; overflow-wrap: anywhere; }
-.mail button { font: 500 15px var(--body); background: transparent; color: var(--ink); border: 1.5px solid var(--ink); border-radius: 999px; padding: 12px 20px; cursor: pointer; }
-.mail button:hover { background: var(--ink); color: var(--paper); }
-.contact .four { margin-top: 48px; text-align: left; }
-.contact .four .tile { min-height: 0; }
-.contact .four .tile p:not(.k) { font-size: 17px; color: inherit; overflow-wrap: anywhere; }
-.contact .four a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 64px); align-items: end; }
+.contact h2 { font-size: clamp(44px, 7vw, 92px); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+.contact h2 span { color: var(--blue); }
+.mail { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 28px; }
+.mail .addr { font-size: clamp(18px, 2.2vw, 26px); font-weight: 700; padding: 14px 26px; border-radius: 999px; background: var(--violet); color: var(--cyan); user-select: all; overflow-wrap: anywhere; }
+.mail button { font: 600 15px var(--sans); background: transparent; color: var(--violet); border: 2px solid var(--violet); border-radius: 999px; padding: 12px 20px; cursor: pointer; }
+.mail button:hover { background: var(--violet); color: var(--cyan); }
+.channels { list-style: none; padding: 0; border-top: 2px solid var(--ink); }
+.channels li { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 12px; padding: 16px 0; border-bottom: 1px solid #BFE3DB; }
+.channels .k { font-family: var(--mono); font-size: 13px; color: var(--blue); padding-top: 3px; }
+.channels a, .channels span { overflow-wrap: anywhere; }
+@media (max-width: 820px) { .contact-grid { grid-template-columns: 1fr; } }
+@media (max-width: 420px) { .channels li { grid-template-columns: 1fr; gap: 2px; } }
 
-footer { background: var(--ink); color: var(--mute-dark); font-size: 14px; }
-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding-block: 28px; }
+footer { background: var(--violet); color: var(--on-violet-soft); font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding-block: 26px; }
 </style>
 </head>
 <body>
+
 <nav class="nav" aria-label="Sections">
   <div class="wrap">
-    <b>Toukir Rahman</b>
+    <a class="mark" href="#top"><i aria-hidden="true"></i>Toukir Rahman</a>
     <ul>
-      <li><a href="#home">home</a></li>
-      <li><a href="#work">work</a></li>
-      <li><a href="#research">research</a></li>
-      <li><a href="#contact">contact</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-    <span class="loc">Bangladesh</span>
   </div>
 </nav>
 
-<main>
-<section class="dark hero" id="home">
-  <div class="wrap grid">
-    <div style="min-width:0">
-      <h1 class="display"><span class="paren">(</span> Toukir<br>Rahman <span class="paren">)</span></h1>
-      <div class="tags mute"><span>power systems</span><span>energy storage</span><span>operations</span></div>
-      <p class="lede">Electrical engineer who keeps asking <span class="paren">(</span>why things fail<span class="paren">)</span></p>
+<main id="top">
+<section class="band violet hero" aria-label="Introduction">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div style="min-width:0">
+        <p class="label">Electrical engineer · Bangladesh</p>
+        <h1 style="margin-top:18px">Toukir<br>Rahman<span>.</span></h1>
+        <p class="intro">He spent three years at Unilever in <b>R&amp;D labs and on factory floors</b>. His research asked a simple question: <b>what does a noisy charger do to a battery?</b></p>
+      </div>
+      <figure>
+        <img src="img/factory-gate.jpg" alt="Toukir Rahman standing at the entrance of Unilever’s Kalurghat Factory in Chattogram" width="507" height="607">
+        <figcaption>Kalurghat Factory, Chattogram</figcaption>
+      </figure>
+    </div>
+    <div class="scope">
+      <canvas id="scope" aria-hidden="true"></canvas>
+      <div class="legend"><span><b class="k-dc">— DC charge</b> &#160; <b class="k-rip">— DC + 100 Hz ripple</b></span><span>the signal behind his thesis</span></div>
+    </div>
+    <div class="facts">
+      <div><b>3.74</b><span>CGPA, EEE at IUT</span></div>
+      <div><b>2</b><span>IEEE papers</span></div>
+      <div><b>3</b><span>roles at Unilever</span></div>
+      <div><b>318</b><span>GRE</span></div>
+      <div><b>110</b><span>TOEFL iBT</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" aria-label="About">
+  <div class="wrap about-grid">
+    <div class="copy">
+      <p class="label">About</p>
+      <p class="big" style="margin-top:14px">Toukir likes the part of engineering where something works on paper and then misbehaves in the real world.</p>
+      <p>At Unilever Bangladesh he moved from packaging development in R&amp;D to running production lines and plant utilities. Along the way he worked on a refill machine meant to cut plastic, the first locally moulded Horlicks jar, and the daily job of keeping 30+ lines productive.</p>
+      <p>His undergraduate research at the Islamic University of Technology looked at lead-acid batteries, the kind found in Bangladesh’s electric rickshaws and home UPS units, and how ripple from cheap chargers wears them out. That question is where he wants to go next.</p>
     </div>
     <figure>
-      <img src="img/factory-gate.jpg" alt="Toukir Rahman at the gate of Unilever’s Kalurghat Factory, Chattogram" width="506" height="607">
-      <figcaption class="mute">Kalurghat Factory, Chattogram</figcaption>
+      <img src="img/team.jpg" alt="Toukir with a group of colleagues on a wooden deck in front of a green hillside" width="1600" height="1369">
+      <p class="cap">With colleagues on a team outing</p>
     </figure>
   </div>
 </section>
 
-<section class="dark about" aria-label="About">
+<section class="band tint" id="work">
   <div class="wrap">
-    <p class="statement"><span class="accent">» Toukir is an electrical engineer</span> who has spent three years inside Unilever, first designing packaging in R&amp;D, then keeping a factory’s lines and power running.</p>
-    <p class="mute">His undergraduate thesis on battery degradation is where the real interest started: energy storage, and the power systems around it.</p>
-    <div class="row">
-      <img src="img/team.jpg" alt="Toukir with his team on an outing, standing on a wooden deck in front of a green hillside" width="1600" height="1369">
-      <div class="cards">
-        <div class="tile t-card"><p class="k">(education)</p><h3>B.Sc. in Electrical and Electronic Engineering, IUT</h3><div class="spacer"></div><p>2019 – 2023 · CGPA 3.74 / 4.00</p></div>
-        <div class="tile t-orange"><p class="k">(focus)</p><h3>Energy storage and power systems</h3><div class="spacer"></div><p>Two IEEE papers, research-bound</p></div>
+    <div class="work-head">
+      <div>
+        <p class="label">Work</p>
+        <h2 class="title">From lab bench to factory floor</h2>
       </div>
+      <p class="org"><b>Unilever Bangladesh Limited</b><br>Jun 2023 – Jul 2026</p>
     </div>
-  </div>
-</section>
 
-<section class="light numbers" aria-label="By the numbers">
-  <div class="wrap">
-    <h2 class="display h2"><span class="paren">(</span> By the numbers <span class="paren">)</span></h2>
-    <div class="stats">
-      <div class="stat"><b>3.74</b><span class="k">(out of 4.00)</span><p>CGPA, B.Sc. in Electrical and Electronic Engineering, IUT</p></div>
-      <div class="stat"><b>2</b><span class="k">(IEEE papers)</span><p>Published at IEEE GlobConET in 2022 and 2023</p></div>
-      <div class="stat"><b>14</b><span class="k">(citations)</span><p>Across both papers, 6 and 8 respectively</p></div>
-      <div class="stat"><b>30+</b><span class="k">(production lines)</span><p>Whose equipment effectiveness his shift teams worked to raise</p></div>
-      <div class="stat"><b>2</b><span class="k">(R&amp;D awards)</span><p>Internal Unilever awards for innovation and sustainable design</p></div>
-      <div class="stat"><b>110</b><span class="k">(TOEFL iBT, of 120)</span><p>CEFR C1, Oct 2026 · GRE 318 (Q 162, V 156)</p></div>
-    </div>
-  </div>
-</section>
+    <ol class="stages">
+      <li class="stage">
+        <div><span class="step">1</span><p class="when">Jun – Sep 2023</p></div>
+        <div class="body">
+          <h3>Intern, Research &amp; Development</h3>
+          <p>A three-month internship that turned into two real projects.</p>
+          <ul class="points">
+            <li><b>Competition benchmarking dashboard.</b> Built a Power BI dashboard on formulation and packaging for skin cleansing products, reorganizing quarterly data so the team could compare against competitors at a glance.</li>
+            <li><b>Urefill.</b> Technical co-lead of a refill machine that dispenses liquid products into the shopper’s own bottle, responsible for resolving technical issues and managing the project.</li>
+          </ul>
+          <div class="feature">
+            <div class="f-head">
+              <p class="bn" lang="bn">যতবার ক্রয়, ততবার সাশ্রয়</p>
+              <p class="tr">“Save every time you buy”: the line on the shop-counter version</p>
+            </div>
+            <div class="f-text">
+              <h4 style="margin-top:0">Refill instead of rebuy</h4>
+              <p class="d">Urefill was the first refill machine in Bangladesh for liquid products such as dishwashing and laundry liquid. Shoppers bring a bottle, choose a product on the touchscreen and pay only for what they take, with no new plastic pack.</p>
+              <p class="d">The modern trade machine stands in supermarkets. A smaller four-product dispenser brought the same idea to neighbourhood shops, with step-by-step instructions in Bangla.</p>
+              <span class="tag">plastic reduction</span>
+            </div>
+            <div class="pair">
+              <figure class="mt"><img src="img/urefill-mt.jpg" alt="The Urefill machine for supermarkets, a tall cabinet with dispensing nozzles and a touchscreen" width="507" height="609"><p class="cap">Modern trade machine</p></figure>
+              <figure class="gt"><img src="img/urefill-gt.jpg" alt="A four-product Urefill dispenser with buttons and screens on a shop counter, beside Sunsilk, Dove and Lifebuoy packs" width="1039" height="573"><p class="cap">General trade dispenser in a local shop</p></figure>
+            </div>
+          </div>
+        </div>
+      </li>
 
-<section class="dark" id="work">
-  <div class="wrap">
-    <p class="eyebrow">( experience · Unilever Bangladesh )</p>
-    <div class="work-head" style="margin-top:16px">
-      <h2 class="display h2">The Unilever years <span class="accent">from R&amp;D to the shopfloor</span></h2>
-      <div class="shots">
-        <span class="big" aria-hidden="true">(</span>
-        <figure class="a"><img src="img/line-team.jpg" alt="Toukir with his Mespack 2 line team in the factory, wearing hairnets" width="905" height="608"><figcaption>Mespack 2 line team</figcaption></figure>
-        <figure class="b"><img src="img/award.jpg" alt="Toukir receiving the R&amp;D H1 Innovation award on stage" width="507" height="607"><figcaption>R&amp;D H1 Award</figcaption></figure>
-        <span class="big" aria-hidden="true">)</span>
-      </div>
-    </div>
-    <ol class="timeline" style="list-style:none;padding:0">
-      <li class="step"><p class="when">(01) · Jun – Sep 2023</p><div class="bar"></div><h3>Intern, Research &amp; Development</h3><p>Built a Power BI competition-benchmarking dashboard and was technical co-lead of the Urefill liquid-refill machine.</p></li>
-      <li class="step"><p class="when">(02) · Oct 2023 – Feb 2025</p><div class="bar"></div><h3>R&amp;D Officer, Packaging Development</h3><p>Packaging for the Foods portfolio and the Horlicks relaunch, with less plastic and lower cost; two internal R&amp;D awards.</p></li>
-      <li class="step"><p class="when">(03) · Mar 2025 – Jul 2026</p><div class="bar"></div><h3>Executive, Production &amp; Engineering</h3><p>Line mentor for Mespack 2 (Vim and Rin Liquid), equipment effectiveness across 30+ lines, and utility maintenance.</p></li>
+      <li class="stage">
+        <div><span class="step">2</span><p class="when">Oct 2023 – Feb 2025</p></div>
+        <div class="body">
+          <h3>R&amp;D Officer, Packaging Development</h3>
+          <p>Packaging for the Foods portfolio, with two targets that usually pull against each other: lower cost and less plastic.</p>
+          <ul class="points">
+            <li><b>Horlicks Icon Jar.</b> In 2024 the whole Horlicks range was relaunched in a new jar. Toukir was the packaging R&amp;D officer on the cross-functional team that moulded the jar locally, a first for jars in Bangladesh. Added ribs made it stiffer and stronger, and it passed the transit trial.</li>
+            <li><b>What it changed.</b> About 20 tonnes less plastic and a 30% shorter lead time. Caps were imported from India to keep the launch on schedule, then switched to local production once the cap moulds were ready.</li>
+            <li><b>Three awards.</b> The team was recognised for Superior Product as Team Icon. Toukir also received the R&amp;D H1 Award for Innovation (Sep 2024) for the relaunch and the R&amp;D Excellence Award for packaging sustainability (Jan 2024).</li>
+          </ul>
+          <div class="shots two">
+            <figure><img src="img/horlicks.jpg" alt="Four Horlicks jars in the new format: Junior Horlicks stage 1, chocolate, original and Junior Horlicks" width="507" height="609" style="object-position:50% 70%"><p class="cap">The Horlicks range in the new Icon Jar</p></figure>
+            <figure><img src="img/award.jpg" alt="Toukir receiving the R&amp;D H1 Innovation award on stage" width="507" height="607"><p class="cap">Receiving the R&amp;D H1 Award for Innovation</p></figure>
+          </div>
+        </div>
+      </li>
+
+      <li class="stage">
+        <div><span class="step">3</span><p class="when">Mar 2025 – Jul 2026</p></div>
+        <div class="body">
+          <h3>Executive, Production &amp; Engineering</h3>
+          <p>Shift operations at the Kalurghat Factory in Chattogram, where output targets and safety have to hold at the same time.</p>
+          <ul class="points">
+            <li><b>Line mentor for Mespack 2,</b> the line that fills Vim Liquid and Rin Liquid, leading the team on overall equipment effectiveness.</li>
+            <li><b>Equipment effectiveness across 30+ lines,</b> finding bottlenecks and troubleshooting in real time to cut downtime and waste.</li>
+            <li><b>Plant utilities,</b> including electrical maintenance, critical spare parts, air conditioning, CCTV and material-handling equipment.</li>
+          </ul>
+          <div class="shots">
+            <figure><img src="img/line-team.jpg" alt="Toukir taking a selfie with four members of the Mespack 2 line team inside the factory" width="905" height="608" style="max-height:460px"><p class="cap">The Mespack 2 maintenance and operations team</p></figure>
+          </div>
+        </div>
+      </li>
     </ol>
   </div>
 </section>
 
-<section class="light thesis" id="research">
+<section class="band violet" id="research">
   <div class="wrap">
-    <p class="eyebrow">( research · undergraduate thesis )</p>
-    <h2 class="display h2" style="font-size:clamp(36px,5.4vw,76px)">Does AC ripple age a <span class="accent">lead-acid battery</span> faster?</h2>
-    <p class="setup mute">Three 6 V, 4.5 Ah batteries, 35 charge cycles, the same 0.83 A RMS charging current at 7.5–8.5 V. Only the shape of the current changed.</p>
-    <div class="trio">
-      <div class="tile t-card"><p class="k">(battery 1)</p><h3>Constant DC</h3><div class="spacer"></div><p>The control: a clean direct-current charge</p></div>
-      <div class="tile t-orange"><p class="k">(battery 2) · fastest degradation</p><h3>DC + 100 Hz AC</h3><div class="spacer"></div><p>Largest rise in internal resistance, steepest loss of discharge capacity, and the least consistent voltage behaviour</p></div>
-      <div class="tile t-card"><p class="k">(battery 3)</p><h3>DC + 1 kHz AC</h3><div class="spacer"></div><p>The same ripple at a higher frequency</p></div>
+    <p class="label">Research · undergraduate thesis</p>
+    <h2 class="q">Does a noisy charger age a battery <span class="hl-coral">faster</span>?</h2>
+    <div class="why">
+      <div>
+        <p>Lead-acid batteries power much of everyday Bangladesh: <b>electric rickshaws, UPS units and household machines</b>. They are rarely charged by clean lab equipment. Most chargers let some AC ripple through on top of the DC current.</p>
+        <p>Toukir and his co-authors charged three identical batteries with the same current. They changed only the shape of that current, then tracked the two signs of ageing: <b>rising internal resistance</b> and <b>falling capacity</b>.</p>
+      </div>
+      <dl class="spec">
+        <dt>Cells</dt><dd>3 × 6 V, 4.5 Ah sealed gel lead-acid</dd>
+        <dt>Charging</dt><dd>0.83 A RMS, 7.5–8.5 V, constant current</dd>
+        <dt>Test groups</dt><dd>pure DC · DC + 100 Hz · DC + 1 kHz</dd>
+        <dt>Cycles</dt><dd>35, with 8 h rest between cycles</dd>
+        <dt>Discharge</dt><dd>to 5.5 V through a 7.5 Ω resistive load</dd>
+      </dl>
     </div>
-    <p class="footnote mute">Published at IEEE GlobConET 2023 · supervised by Fahim Faisal and Mirza Muntasir Nishat, IUT · funded by an IUT research grant</p>
+
+    <div class="rig">
+      <figure><img src="img/paper-battery.jpg" alt="A Sunca 6 volt 4.5 amp-hour sealed lead-acid battery" width="629" height="582" style="object-fit:contain"><p class="cap"><b>The cell.</b> 6 V, 4.5 Ah</p></figure>
+      <figure><img src="img/paper-dc-setup.jpg" alt="DC charging setup with a regulated bench power supply connected to the battery" width="622" height="492"><p class="cap"><b>DC charging</b> from a bench supply</p></figure>
+      <figure><img src="img/paper-ac-setup.jpg" alt="AC ripple charging setup with a signal generator, oscilloscope and MOSFET switching circuit on a breadboard" width="626" height="496"><p class="cap"><b>Ripple charging</b> via a MOSFET switching circuit</p></figure>
+      <figure><img src="img/paper-discharge.jpg" alt="Two batteries discharging through resistive loads into capacity measurement modules" width="601" height="483"><p class="cap"><b>Discharge</b> and capacity measurement</p></figure>
+    </div>
+
+    <div class="results">
+      <div class="chart">
+        <h3>Internal resistance</h3>
+        <p class="sub">Measured at full charge, cycles 1 to 35</p>
+        <div class="big"><b>+35%</b><span>for the 100 Hz battery, against +1% on clean DC</span></div>
+        <svg viewBox="0 0 640 360" role="img" aria-label="Internal resistance over 35 charge cycles: DC rises from 71 to 72 milliohms, 1 kHz ripple from 75 to 81, 100 Hz ripple from 71 to 96."><line class="grid" x1="56" x2="544" y1="312.0" y2="312.0"/><text class="tick" x="46" y="316.0" text-anchor="end">60</text><line class="grid" x1="56" x2="544" y1="240.0" y2="240.0"/><text class="tick" x="46" y="244.0" text-anchor="end">70</text><line class="grid" x1="56" x2="544" y1="168.0" y2="168.0"/><text class="tick" x="46" y="172.0" text-anchor="end">80</text><line class="grid" x1="56" x2="544" y1="96.0" y2="96.0"/><text class="tick" x="46" y="100.0" text-anchor="end">90</text><line class="grid" x1="56" x2="544" y1="24.0" y2="24.0"/><text class="tick" x="46" y="28.0" text-anchor="end">100</text><text class="tick" x="56.0" y="334" text-anchor="middle">1</text><text class="tick" x="113.4" y="334" text-anchor="middle">5</text><text class="tick" x="185.2" y="334" text-anchor="middle">10</text><text class="tick" x="328.7" y="334" text-anchor="middle">20</text><text class="tick" x="472.2" y="334" text-anchor="middle">30</text><text class="tick" x="544.0" y="334" text-anchor="middle">35</text><text class="axis" x="300.0" y="354" text-anchor="middle">charge cycle</text><text class="axis" x="56" y="16" text-anchor="start">mΩ</text><polyline class="line s-dc" points="56.0,232.8 113.4,240.0 185.2,268.8 328.7,218.4 472.2,211.2 544.0,225.6"/><circle class="dot s-dc" cx="56.0" cy="232.8" r="3"/><circle class="dot s-dc" cx="113.4" cy="240.0" r="3"/><circle class="dot s-dc" cx="185.2" cy="268.8" r="3"/><circle class="dot s-dc" cx="328.7" cy="218.4" r="3"/><circle class="dot s-dc" cx="472.2" cy="211.2" r="3"/><circle class="dot s-dc" cx="544.0" cy="225.6" r="4.5"/><polyline class="line s-1k" points="56.0,204.0 113.4,297.6 185.2,247.2 328.7,189.6 472.2,160.8 544.0,160.8"/><circle class="dot s-1k" cx="56.0" cy="204.0" r="3"/><circle class="dot s-1k" cx="113.4" cy="297.6" r="3"/><circle class="dot s-1k" cx="185.2" cy="247.2" r="3"/><circle class="dot s-1k" cx="328.7" cy="189.6" r="3"/><circle class="dot s-1k" cx="472.2" cy="160.8" r="3"/><circle class="dot s-1k" cx="544.0" cy="160.8" r="4.5"/><polyline class="line s-100" points="56.0,232.8 113.4,218.4 185.2,211.2 328.7,160.8 472.2,103.2 544.0,52.8"/><circle class="dot s-100" cx="56.0" cy="232.8" r="3"/><circle class="dot s-100" cx="113.4" cy="218.4" r="3"/><circle class="dot s-100" cx="185.2" cy="211.2" r="3"/><circle class="dot s-100" cx="328.7" cy="160.8" r="3"/><circle class="dot s-100" cx="472.2" cy="103.2" r="3"/><circle class="dot s-100" cx="544.0" cy="52.8" r="4.5"/><text class="end s-100" x="556" y="57.8">100 Hz</text><text class="endv" x="556" y="73.8">96</text><text class="end s-1k" x="556" y="165.8">1 kHz</text><text class="endv" x="556" y="181.8">81</text><text class="end s-dc" x="556" y="230.6">DC</text><text class="endv" x="556" y="246.6">72</text></svg>
+      </div>
+      <div class="chart">
+        <h3>Discharge capacity</h3>
+        <p class="sub">Amp-hours delivered before 5.5 V</p>
+        <div class="big"><b>−26%</b><span>for the 100 Hz battery, against −12% on clean DC</span></div>
+        <svg viewBox="0 0 640 360" role="img" aria-label="Discharge capacity over 35 charge cycles: DC falls from 3.80 to 3.33 amp-hours, 1 kHz ripple from 4.06 to 3.14, 100 Hz ripple from 3.68 to 2.72."><line class="grid" x1="56" x2="544" y1="312.0" y2="312.0"/><text class="tick" x="46" y="316.0" text-anchor="end">2.50</text><line class="grid" x1="56" x2="544" y1="270.9" y2="270.9"/><text class="tick" x="46" y="274.9" text-anchor="end">2.75</text><line class="grid" x1="56" x2="544" y1="229.7" y2="229.7"/><text class="tick" x="46" y="233.7" text-anchor="end">3.00</text><line class="grid" x1="56" x2="544" y1="188.6" y2="188.6"/><text class="tick" x="46" y="192.6" text-anchor="end">3.25</text><line class="grid" x1="56" x2="544" y1="147.4" y2="147.4"/><text class="tick" x="46" y="151.4" text-anchor="end">3.50</text><line class="grid" x1="56" x2="544" y1="106.3" y2="106.3"/><text class="tick" x="46" y="110.3" text-anchor="end">3.75</text><line class="grid" x1="56" x2="544" y1="65.1" y2="65.1"/><text class="tick" x="46" y="69.1" text-anchor="end">4.00</text><line class="grid" x1="56" x2="544" y1="24.0" y2="24.0"/><text class="tick" x="46" y="28.0" text-anchor="end">4.25</text><text class="tick" x="56.0" y="334" text-anchor="middle">1</text><text class="tick" x="113.4" y="334" text-anchor="middle">5</text><text class="tick" x="185.2" y="334" text-anchor="middle">10</text><text class="tick" x="328.7" y="334" text-anchor="middle">20</text><text class="tick" x="472.2" y="334" text-anchor="middle">30</text><text class="tick" x="544.0" y="334" text-anchor="middle">35</text><text class="axis" x="300.0" y="354" text-anchor="middle">charge cycle</text><text class="axis" x="56" y="16" text-anchor="start">Ah</text><polyline class="line s-dc" points="56.0,98.2 113.4,160.1 185.2,132.6 328.7,114.8 472.2,149.1 544.0,175.9"/><circle class="dot s-dc" cx="56.0" cy="98.2" r="3"/><circle class="dot s-dc" cx="113.4" cy="160.1" r="3"/><circle class="dot s-dc" cx="185.2" cy="132.6" r="3"/><circle class="dot s-dc" cx="328.7" cy="114.8" r="3"/><circle class="dot s-dc" cx="472.2" cy="149.1" r="3"/><circle class="dot s-dc" cx="544.0" cy="175.9" r="4.5"/><polyline class="line s-1k" points="56.0,55.3 113.4,111.2 185.2,162.9 328.7,136.9 472.2,164.7 544.0,206.8"/><circle class="dot s-1k" cx="56.0" cy="55.3" r="3"/><circle class="dot s-1k" cx="113.4" cy="111.2" r="3"/><circle class="dot s-1k" cx="185.2" cy="162.9" r="3"/><circle class="dot s-1k" cx="328.7" cy="136.9" r="3"/><circle class="dot s-1k" cx="472.2" cy="164.7" r="3"/><circle class="dot s-1k" cx="544.0" cy="206.8" r="4.5"/><polyline class="line s-100" points="56.0,117.5 113.4,188.4 185.2,186.9 328.7,163.1 472.2,182.2 544.0,275.6"/><circle class="dot s-100" cx="56.0" cy="117.5" r="3"/><circle class="dot s-100" cx="113.4" cy="188.4" r="3"/><circle class="dot s-100" cx="185.2" cy="186.9" r="3"/><circle class="dot s-100" cx="328.7" cy="163.1" r="3"/><circle class="dot s-100" cx="472.2" cy="182.2" r="3"/><circle class="dot s-100" cx="544.0" cy="275.6" r="4.5"/><text class="end s-dc" x="556" y="180.9">DC</text><text class="endv" x="556" y="196.9">3.33</text><text class="end s-1k" x="556" y="211.8">1 kHz</text><text class="endv" x="556" y="227.8">3.14</text><text class="end s-100" x="556" y="280.6">100 Hz</text><text class="endv" x="556" y="296.6">2.72</text></svg>
+      </div>
+    </div>
+    <p class="source">The battery charged with 100 Hz ripple aged fastest on both measures and showed the least consistent charging voltage. Data from Tables II and III of <a href="https://doi.org/10.1109/GlobConET56651.2023.10150092">the paper</a>, presented at IEEE GlobConET 2023 at Loughborough University London. Supervised by Fahim Faisal and Mirza Muntasir Nishat, funded by an IUT research grant.</p>
   </div>
 </section>
 
-<section class="light" aria-label="Publications" style="padding-top:0">
+<section class="band" aria-label="Publications">
   <div class="wrap">
-    <div class="pubs-head">
-      <h2 class="display h2">Publications</h2>
-      <p>(IEEE, peer-reviewed)</p>
-    </div>
+    <p class="label">Publications</p>
+    <h2 class="title">Peer-reviewed papers</h2>
     <div class="pubs">
       <article class="pub">
-        <p class="n">(01)</p>
         <div style="min-width:0">
+          <p class="venue">IEEE IAS GlobConET 2023 · from his thesis</p>
           <h3>Investigation of the impact of AC harmonics on lead-acid battery degradation</h3>
-          <p class="meta">Bari, R. T. B., <b>Rahman, T.</b>, Punny, M. J., Mian, M. M., Faisal, F., &amp; Nishat, M. M. · IEEE IAS GlobConET 2023 · from his thesis · <a href="https://doi.org/10.1109/GlobConET56651.2023.10150092">doi 10.1109/GlobConET56651.2023.10150092</a></p>
+          <p class="authors">Bari, R. T. B., <b>Rahman, T.</b>, Punny, M. J., Mian, M. M., Faisal, F., &amp; Nishat, M. M.</p>
+          <a class="doi" href="https://doi.org/10.1109/GlobConET56651.2023.10150092">doi.org/10.1109/GlobConET56651.2023.10150092</a>
         </div>
-        <div class="c"><b>6</b><span>citations</span></div>
+        <div class="cites"><b>6</b><span>citations</span></div>
       </article>
       <article class="pub">
-        <p class="n">(02)</p>
         <div style="min-width:0">
+          <p class="venue">IEEE IAS GlobConET 2022 · pp. 406–410</p>
           <h3>Improved design of a ring-resonator-based notch filter with high quality factor and sensitivity</h3>
-          <p class="meta">Binte Bari, R. T., Ehsanul Haque, M., <b>Rahman, T.</b>, &amp; Faruque, M. O. · IEEE IAS GlobConET 2022, pp. 406–410 · <a href="https://doi.org/10.1109/GlobConET53749.2022.9872483">doi 10.1109/GlobConET53749.2022.9872483</a></p>
+          <p class="authors">Binte Bari, R. T., Ehsanul Haque, M., <b>Rahman, T.</b>, &amp; Faruque, M. O.</p>
+          <a class="doi" href="https://doi.org/10.1109/GlobConET53749.2022.9872483">doi.org/10.1109/GlobConET53749.2022.9872483</a>
         </div>
-        <div class="c"><b>8</b><span>citations</span></div>
+        <div class="cites"><b>8</b><span>citations</span></div>
       </article>
     </div>
   </div>
 </section>
 
-<section class="light projects" aria-label="Projects" style="padding-top:0">
+<section class="band tint" id="projects">
   <div class="wrap">
-    <h2 class="display"><span class="paren">(</span> Projects he has <span class="accent">built and debugged</span>, not just studied <span class="paren">)</span></h2>
-    <div class="four">
-      <div class="tile t-card"><div class="top"><span class="mute">2022</span><span class="k">(01)</span></div><h3>Automatic power factor correction</h3><div class="spacer"></div><p>Arduino and capacitor banks that hold the power factor above 0.95 across inductive loads</p></div>
-      <div class="tile t-card"><div class="top"><span class="mute">2023</span><span class="k">(02)</span></div><h3>PWM cooling-fan control</h3><div class="spacer"></div><p>Fan speed follows GPU temperature from 20 °C up, with a throttling warning on an LCD</p></div>
-      <div class="tile t-ink"><div class="top"><span class="mute">2023</span><span class="k">(03)</span></div><h3>Arctic ice from orbit</h3><div class="spacer"></div><p>MATLAB image processing of NASA imagery, 1991–2016, showing a sharp loss of old ice after 2005</p></div>
-      <div class="tile t-orange"><div class="top"><span>Unilever, 2023</span><span>(04)</span></div><h3>Urefill refill machine</h3><div class="spacer"></div><p>Technical co-lead of a dispenser for liquid products, built to cut plastic packaging</p></div>
+    <p class="label">Projects</p>
+    <h2 class="title">Built at university</h2>
+    <div class="projects">
+      <article class="proj"><p class="yr">2022</p><h3>Automatic power factor correction</h3><p>Switches capacitor banks in and out to hold the power factor above 0.95 as inductive loads change.</p><p class="kit">Arduino · capacitor banks · relays</p></article>
+      <article class="proj"><p class="yr">2023</p><h3>Temperature-driven fan control</h3><p>Sets cooling-fan speed with PWM from the GPU temperature and warns on an LCD before the card throttles.</p><p class="kit">PWM · temperature sensing · LCD</p></article>
+      <article class="proj"><p class="yr">2023</p><h3>Arctic ice from orbit</h3><p>Image processing of NASA imagery from 1991 to 2016, showing a sharp loss of old Arctic ice after 2005.</p><p class="kit">MATLAB · image processing</p></article>
+    </div>
+
+    <div class="beyond">
+      <div>
+        <h3>Leadership</h3>
+        <div class="events">
+          <div><b>1,200+</b><p>attendees at IUT Career Expo 2023, with 20+ companies</p></div>
+          <div><b>2,000+</b><p>attendees at the 1st National Virtual Career Expo 2021, with 120 volunteers</p></div>
+        </div>
+        <p class="events-note">Vice President, IUT Career and Business Society, Aug 2022 – Apr 2023</p>
+        <div class="skills">
+          <h3>Tools</h3>
+          <div class="chips"><span>MATLAB</span><span>Python</span><span>OrCAD PSpice</span><span>Proteus</span><span>AutoCAD LT</span><span>Power BI</span><span>Figma</span><span>Illustrator</span><span>Photoshop</span><span>Premiere Pro</span></div>
+        </div>
+      </div>
+      <div>
+        <h3>Awards and courses</h3>
+        <ul class="list">
+          <li><b>Superior Product, Team Icon</b><time>2024</time><span>Horlicks Icon Jar, first locally moulded jar in Bangladesh</span></li>
+          <li><b>R&amp;D H1 Award, Innovation</b><time>Sep 2024</time><span>Horlicks relaunch, Unilever Bangladesh</span></li>
+          <li><b>R&amp;D Excellence Award</b><time>Jan 2024</time><span>Holistic design for packaging sustainability</span></li>
+          <li><b>70% scholarship, ISCEA PTAK Prize</b><time>2022</time><span>Supply chain competition</span></li>
+          <li><b>Python for Everybody</b><time>Jun 2020</time><span>University of Michigan, Coursera</span></li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="orange direction" aria-label="Where he is headed">
-  <div class="wrap grid">
+<section class="band violet" aria-label="What comes next">
+  <div class="wrap next-grid">
     <div style="min-width:0">
-      <p class="eyebrow">( where he’s headed )</p>
+      <p class="label">Next</p>
+      <h2 class="title">Graduate research in energy storage</h2>
+      <p class="lead">Toukir is preparing for graduate study to take the battery questions from his thesis further, with the factory experience to know what happens when a design meets real conditions.</p>
       <ul class="interests">
         <li>Energy storage</li>
-        <li>Power &amp; energy systems</li>
+        <li>Power and energy systems</li>
         <li>Renewable integration</li>
         <li>Power electronics</li>
         <li>Control systems</li>
       </ul>
-      <p class="next">Next: graduate research that takes the battery questions from his thesis much further.</p>
     </div>
     <div class="scores">
-      <div class="score"><p class="k">(GRE, Aug 2024)</p><b>318</b><p>Quant 162 · Verbal 156 · AWA 3.5</p></div>
-      <div class="score"><p class="k">(TOEFL iBT, Oct 2026)</p><b>110</b><p>out of 120 · CEFR C1</p></div>
+      <div class="score"><p class="k">GRE · Aug 2024</p><b>318</b><p>Quant 162 · Verbal 156 · AWA 3.5</p></div>
+      <div class="score"><p class="k">TOEFL iBT · Oct 2026</p><b>110</b><p>out of 120 · CEFR C1</p></div>
     </div>
   </div>
 </section>
 
-<section class="light contact" id="contact">
-  <div class="wrap">
-    <h2 class="display"><span class="paren">(</span> Let’s talk <span class="paren">)</span></h2>
-    <p class="sub mute">About energy storage, power systems, research, or the next role.</p>
-    <div class="mail">
-      <span class="pill" id="email">toukir1011@gmail.com</span>
-      <button type="button" id="copy-email">Copy email</button>
+<section class="band contact" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <p class="label">Contact</p>
+      <h2 style="margin-top:14px">Say hello<span>.</span></h2>
+      <p class="lead">Open to conversations about energy storage, power systems, research positions and engineering roles.</p>
+      <div class="mail">
+        <span class="addr" id="email">toukir1011@gmail.com</span>
+        <button type="button" id="copy-email">Copy email</button>
+      </div>
     </div>
-    <div class="four">
-      <div class="tile t-ink"><p class="k">(academic)</p><p>toukir14@iut-dhaka.edu</p></div>
-      <div class="tile t-card"><p class="k">(phone)</p><p>+880 1953 899285</p></div>
-      <div class="tile t-card"><p class="k">(LinkedIn)</p><p><a href="https://www.linkedin.com/in/toukirrahman">linkedin.com/in/toukirrahman</a></p></div>
-      <div class="tile t-card"><p class="k">(Google Scholar)</p><p>Toukir Rahman</p></div>
-    </div>
+    <ul class="channels">
+      <li><span class="k">Work email</span><span>toukir.rahman@unilever.com</span></li>
+      <li><span class="k">Academic email</span><span>toukir14@iut-dhaka.edu</span></li>
+      <li><span class="k">Phone</span><span>+880 1953 899285</span></li>
+      <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/toukirrahman">linkedin.com/in/toukirrahman</a></li>
+      <li><span class="k">Google Scholar</span><a href="https://scholar.google.com/citations?user=T5jrowoAAAAJ&amp;hl=en">Toukir Rahman</a></li>
+    </ul>
   </div>
 </section>
 </main>
 
 <footer>
-  <div class="wrap"><span>Toukir Rahman · Electrical engineer</span><span>Dhaka · Chattogram, Bangladesh</span></div>
+  <div class="wrap"><span>Toukir Rahman · Electrical engineer</span><span>Dhaka and Chattogram, Bangladesh</span></div>
 </footer>
 
 <script>
 (function () {
-  var btn = document.getElementById('copy-email');
-  var mail = document.getElementById('email');
+  var c = document.getElementById('scope');
+  var ctx = c.getContext('2d');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var css = getComputedStyle(document.documentElement);
+  var teal = css.getPropertyValue('--teal').trim(), cyan = css.getPropertyValue('--cyan').trim(), grid = css.getPropertyValue('--violet-line').trim();
+  var w = 0, h = 0, phase = 0;
+  function size() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = c.clientWidth; h = c.clientHeight;
+    c.width = Math.round(w * dpr); c.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = grid; ctx.lineWidth = 1;
+    for (var x = 0; x <= w; x += 48) { ctx.beginPath(); ctx.moveTo(x + .5, 0); ctx.lineTo(x + .5, h); ctx.stroke(); }
+    var mid = h * 0.62;
+    ctx.setLineDash([6, 6]); ctx.strokeStyle = cyan; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(0, mid); ctx.lineTo(w, mid); ctx.stroke(); ctx.setLineDash([]);
+    ctx.strokeStyle = teal; ctx.lineWidth = 2.5; ctx.beginPath();
+    var period = Math.max(90, w / 12), amp = h * 0.22;
+    for (var i = 0; i <= w; i += 2) {
+      var y = mid - amp * Math.abs(Math.sin((i / period) * Math.PI + phase)) + amp * 0.36;
+      if (i === 0) ctx.moveTo(i, y); else ctx.lineTo(i, y);
+    }
+    ctx.stroke();
+  }
+  function loop() { phase -= 0.035; draw(); requestAnimationFrame(loop); }
+  size(); draw();
+  window.addEventListener('resize', function () { size(); draw(); });
+  if (!reduce) requestAnimationFrame(loop);
+
+  var btn = document.getElementById('copy-email'), mail = document.getElementById('email');
   btn.addEventListener('click', function () {
-    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy email'; }, 1800); };
-    var fallback = function () {
-      var r = document.createRange(); r.selectNodeContents(mail);
-      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      btn.textContent = 'Selected, press Ctrl+C';
-    };
-    try {
-      navigator.clipboard.writeText(mail.textContent.trim()).then(done, fallback);
-    } catch (e) { fallback(); }
+    var ok = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy email'; }, 1800); };
+    var fb = function () { var r = document.createRange(); r.selectNodeContents(mail); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected, press Ctrl+C'; };
+    try { navigator.clipboard.writeText(mail.textContent.trim()).then(ok, fb); } catch (e) { fb(); }
   });
 })();
 </script>
